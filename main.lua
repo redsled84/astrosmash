@@ -14,6 +14,9 @@ function love.update(dt)
 	Player:updatePlayer(dt)
 	Bullets:updateBullets(dt)
 	Enemies:updateEnemies(dt)
+	Bullets:loopBullets(function(bullet)
+		Enemies:checkOnCollide(bullet)
+	end)
 end
 
 function love.draw()

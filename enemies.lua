@@ -1,5 +1,6 @@
 local Enemies = { w = 16, h = 32 }
 local windowWidth = love.graphics.getWidth()
+local windowHeight = love.graphics.getHeight()
 
 function Enemies:spawnEnemy(x, y, spd, w, h)
 	table.insert(self, {x = x, y = y, spd = spd, w = w, h = h, hasCollided = false})
@@ -7,8 +8,10 @@ end
 
 function Enemies:destroyEnemyOnCollide()
 	for i=#self, 1, -1 do
-		if self.hasCollided then
+		local enemy = self[i]
+		if enemy.hasCollided then
 			table.remove(self, i)
+			print('ya')
 		end
 	end
 end
@@ -16,10 +19,10 @@ end
 function Enemies:checkOnCollide(o)
 	for i=#self, 1, -1 do
 		local enemy = self[i]
-		if enemy.x < o.x + o.width and
+		if enemy.x < o.x + o.w and
 		enemy.x + enemy.w > o.x and
-		enemy.y < o.y + o.height and
-		enemy.y + enemy.height > o.y then
+		enemy.y < o.y + o.h and
+		enemy.y + enemy.h > o.y then
 			enemy.hasCollided = true
 		end
 	end
@@ -28,7 +31,7 @@ end
 function Enemies:destroyEnemyWhenOutOfBounds()
 	for i=#self, 1, -1 do
 		local enemy = self[i]
-		if enemy.y+enemy.h < 0 then
+		if enemy.y+enemy.h > windowHeight-68 then
 			table.remove(self, i)
 		end
 	end
@@ -47,7 +50,7 @@ function Enemies:updateEnemies(dt)
 	w = love.math.random(8, 32)
 	h = love.math.random(8, 32)
     if #Enemies <= 10 then	
-	  self:spawnEnemy(x, 0, spd, w, h)
+		self:spawnEnemy(x, 0, spd, w, h)
 	end
 	self:moveEnemies(dt)
 	self:destroyEnemyOnCollide()
