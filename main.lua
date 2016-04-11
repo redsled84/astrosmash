@@ -1,6 +1,3 @@
-width = love.graphics.getWidth()
-height = love.graphics.getHeight()
-
 local Background = require 'background'
 local Player = require 'player'
 local Bullets = require 'bullets'
@@ -22,8 +19,8 @@ end
 function love.draw()
 	Background:drawBackground()
 	Player:drawPlayer({255,255,255}, 'fill')
-	Bullets:drawBullets({255,255,255}, 'fill')
-	Enemies:drawEnemies({255,255,255}, 'fill')
+	Bullets:drawBullets({0,0,255}, 'fill')
+	Enemies:drawEnemies({255,0,0}, 'fill')
 end
 
 function love.keypressed(key)
