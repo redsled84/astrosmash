@@ -1,6 +1,6 @@
 local Player = require 'player'
 local Bullets = require 'bullets'
-require ("enemies") 
+local Enemies = require 'enemies'
 
 function love.load()
 	Player:setPlayer()
@@ -14,7 +14,7 @@ function love.update(dt)
 	Bullets:updateBullets(dt)
 	for i=1,100 do
 		x = love.math.random(0, width)
-		table.insert(listOfEnemies, createEnemy(x, 10, 10, 10))
+		table.insert(listOfEnemies, Enemies:createEnemy(x, 10, 10, 10))
 	end	
 	moveEnemy()
 end
