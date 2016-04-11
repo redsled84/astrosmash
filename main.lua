@@ -1,30 +1,29 @@
+width = love.graphics.getWidth()
+height = love.graphics.getHeight()
+
+local Background = require 'background'
 local Player = require 'player'
 local Bullets = require 'bullets'
 local Enemies = require 'enemies'
 
 function love.load()
+	Background:createBackground()
 	Player:setPlayer()
-
-	local str = "Astrosmash copy currently under development by redsled84 and slainchicken and LapisButterfly :)"
+	local str = "Astrosmash copy currently under development by redsled84, slainchicken and LapisButterfly :)"
 	print(str)
 end
 
 function love.update(dt)
 	Player:updatePlayer(dt)
 	Bullets:updateBullets(dt)
-	for i=1,100 do
-		x = love.math.random(0, width)
-		table.insert(Enemies, Enemies:createEnemy(x, 10, 10, 10))
-	end	
-	Enemies:moveEnemy()
+	Enemies:updateEnemies(dt)
 end
 
 function love.draw()
+	Background:drawBackground()
 	Player:drawPlayer({255,255,255}, 'fill')
 	Bullets:drawBullets({255,255,255}, 'fill')
-	for i,v in ipairs(Enemies) do
-		Enemies:drawEnemy(5,5,5,5)
-	end
+	Enemies:drawEnemies({255,255,255}, 'fill')
 end
 
 function love.keypressed(key)
@@ -34,5 +33,4 @@ function love.keypressed(key)
 	end
 
 	Bullets:shootBullet(key, Player.x, Player.y)
-	drawEnemy()
 end
