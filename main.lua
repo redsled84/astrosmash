@@ -14,16 +14,16 @@ function love.update(dt)
 	Bullets:updateBullets(dt)
 	for i=1,100 do
 		x = love.math.random(0, width)
-		table.insert(listOfEnemies, Enemies:createEnemy(x, 10, 10, 10))
+		table.insert(Enemies, Enemies:createEnemy(x, 10, 10, 10))
 	end	
-	moveEnemy()
+	Enemies:moveEnemy()
 end
 
 function love.draw()
 	Player:drawPlayer({255,255,255}, 'fill')
 	Bullets:drawBullets({255,255,255}, 'fill')
-	for i,v in ipairs(listOfEnemies) do
-		drawEnemy(5,5,5,5)
+	for i,v in ipairs(Enemies) do
+		Enemies:drawEnemy(5,5,5,5)
 	end
 end
 
