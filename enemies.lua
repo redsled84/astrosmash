@@ -1,3 +1,5 @@
+listOfEnemies = {}
+
 function createEnemy(x, y, width, height)
 	enemy = {}
 	enemy.x  = x
@@ -8,9 +10,11 @@ function createEnemy(x, y, width, height)
 end
 
 function drawEnemy(x, y, width, height)
-	love.graphics.rectangle("fill", x, y, width, height)
+	for i,v in ipairs(listOfEnemies) do
+		love.graphics.rectangle("fill", x, y, width, height)
+	end
 end
 
 function moveEnemy()
-	
+
 end
