@@ -4,6 +4,13 @@ function Bullets:spawnBullet(x, y, spd)
 	table.insert(self, {x = x, y = y, spd = spd, w = self.w, h = self.h, hasCollided = false})
 end
 
+function Bullets:loopBullets(f)
+	for i=1, #self do
+		local bullet = self[i]
+		f(bullet)
+	end
+end
+
 function Bullets:destroyBulletOnCollide()
 	for i=#self, 1, -1 do
 		if self.hasCollided then
@@ -15,7 +22,7 @@ end
 function Bullets:destroyBulletWhenOutOfBounds()
 	for i=#self, 1, -1 do
 		local bullet = self[i]
-		if bullet.y+bullet.h < 0 then
+		if bullet.y+bullet.h > love.graphics.getHeight() then
 			table.remove(self, i)
 		end
 	end
