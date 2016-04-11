@@ -1,4 +1,4 @@
-local Bullets = { w = 16, h = 32 }
+local Bullets = { w = 4, h = 32 }
 
 function Bullets:spawnBullet(x, y, spd)
 	table.insert(self, {x = x, y = y, spd = spd, w = self.w, h = self.h, hasCollided = false})
