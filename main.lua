@@ -1,7 +1,6 @@
 local Player = require 'player'
 local Bullets = require 'bullets'
 require ("enemies") 
-listOfEnemies = {}
 
 function love.load()
 	Player:setPlayer()
@@ -14,7 +13,8 @@ function love.update(dt)
 	Player:updatePlayer(dt)
 	Bullets:updateBullets(dt)
 	for i=1,100 do
-		table.insert(listOfEnemies, createEnemy())
+		x = love.math.random(0, width)
+		table.insert(listOfEnemies, createEnemy(x, 10, 10, 10))
 	end	
 	moveEnemy()
 end
@@ -34,4 +34,5 @@ function love.keypressed(key)
 	end
 
 	Bullets:shootBullet(key, Player.x, Player.y)
+	drawEnemy()
 end
