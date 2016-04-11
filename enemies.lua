@@ -1,4 +1,5 @@
 local Enemies = { w = 16, h = 32 }
+local windowWidth = love.graphics.getWidth()
 
 function Enemies:spawnEnemy(x, y, spd, w, h)
 	table.insert(self, {x = x, y = y, spd = spd, w = w, h = h, hasCollided = false})
@@ -8,6 +9,18 @@ function Enemies:destroyEnemyOnCollide()
 	for i=#self, 1, -1 do
 		if self.hasCollided then
 			table.remove(self, i)
+		end
+	end
+end
+
+function Enemies:checkOnCollide(o)
+	for i=#self, 1, -1 do
+		local enemy = self[i]
+		if enemy.x < o.x + o.width and
+		enemy.x + enemy.w > o.x and
+		enemy.y < o.y + o.height and
+		enemy.y + enemy.height > o.y then
+			enemy.hasCollided = true
 		end
 	end
 end
@@ -29,12 +42,12 @@ function Enemies:moveEnemies(dt)
 end
 
 function Enemies:updateEnemies(dt)
-	x = love.math.random(0, width)
+	x = love.math.random(0, windowWidth)
 	spd = love.math.random(50, 200)
 	w = love.math.random(8, 32)
 	h = love.math.random(8, 32)
     if #Enemies <= 10 then	
-	  self:spawnEnemy(x,0,spd,w,h)
+	  self:spawnEnemy(x, 0, spd, w, h)
 	end
 	self:moveEnemies(dt)
 	self:destroyEnemyOnCollide()
