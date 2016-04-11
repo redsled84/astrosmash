@@ -12,7 +12,7 @@ function Enemies:createEnemy(x, y, width, height)
 end
 
 function Enemies:drawEnemy(x, y, width, height)
-	for i,v in ipairs(enemies) do
+	for i,v in ipairs(Enemies) do
 		love.graphics.rectangle("fill", v.x, v.y, v.width, v.height)
 	end
 end
