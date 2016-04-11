@@ -1,5 +1,4 @@
 require ("enemies") 
-listOfEnemies = {}
 
 function love.load()
 	local str = "Astrosmash copy currently under development by redsled84 and slainchicken and LapisButterfly :)"
@@ -8,13 +7,12 @@ end
 
 function love.update(dt)
 	for i=1,100 do
-		table.insert(listOfEnemies, createEnemy())
+		x = love.math.random(0, width)
+		table.insert(listOfEnemies, createEnemy(x, 10, 10, 10))
 	end	
 	moveEnemy()
 end
 
 function love.draw()
-	for i,v in ipairs(listOfEnemies) do
-		drawEnemy(5,5,5,5)
-	end
+	drawEnemy()
 end
