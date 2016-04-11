@@ -10,7 +10,7 @@ end
 
 function Background:drawBackground()
 	for i,v in ipairs(Background) do
-		love.graphics.rectangle(fill, x, y, 3, 3)
+		love.graphics.rectangle("fill", x, y, 3, 3)
 	end
 end
 
