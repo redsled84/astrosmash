@@ -14,3 +14,4 @@ function Background:drawBackground()
 	end
 end
 
+return Background
