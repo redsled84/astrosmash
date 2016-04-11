@@ -1,7 +1,7 @@
 local Background = {}
 
 function Background:createBackground()
-	for i=1,10 do
+	for i=1,50 do
  	 	self.x = love.math.random(10, width)
 		self.y = love.math.random(10, height)
 		table.insert(self, { x = self.x, y = self.y })
