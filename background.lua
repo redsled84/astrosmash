@@ -15,9 +15,8 @@ function Background:drawBackground()
 		love.graphics.setColor(0,255,0)
 		love.graphics.rectangle("fill", v.x, v.y, 3, 3)
 	end
-
-	love.graphics.setColor(255,255,255)
-	love.graphics.line(0, windowHeight-68, windowWidth, windowHeight-68)
+	love.graphics.setColor(0,255,0)
+	love.graphics.rectangle("fill", 0, windowHeight-68, windowWidth, 5)
 end
 
 return Background
