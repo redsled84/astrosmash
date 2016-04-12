@@ -21,7 +21,7 @@ end
 
 function love.draw()
 	Background:drawBackground()
-	Player:drawPlayer({255,255,255}, 'fill')
+	Player:drawPlayer({0, 0, 255}, 'fill')
 	Bullets:drawBullets({0,0,255}, 'fill')
 	Enemies:drawEnemies({255,0,0}, 'fill')
 end
