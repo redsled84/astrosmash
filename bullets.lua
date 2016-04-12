@@ -51,7 +51,7 @@ end
 
 function Bullets:shootBullet(key, x, y)
 	if key == 'space' then
-		self:spawnBullet(x, y, 500)
+		self:spawnBullet(x + 7, y, 500) -- this should be 1/2 of the player - 1/2 of the bullet size...  need to fix
 	end
 end
 
