@@ -1,7 +1,7 @@
 local Player = {}
 
 function Player:setPlayer()
-	self.x, self.y, self.w, self.h = love.graphics.getWidth() / 2, love.graphics.getHeight() - 100, 32, 32
+	self.x, self.y, self.w, self.h = love.graphics.getWidth() / 2, love.graphics.getHeight() - 100, 16, 32
 	self.vx = 0
 	self.spd, self.maxSpd = 250, 375
 	self.bullets = {}
@@ -16,10 +16,10 @@ function Player:movePlayer(dt)
     	self.vx = 0
    	end  
  	elseif lk.isDown("right") or lk.isDown("d") then 
-   		if self.x + 32 * dt < love.graphics.getWidth() - 32 then -- move right
+   		if self.x + self.w * dt < love.graphics.getWidth() - self.w then -- move right
      		self.x = self.x + self.spd * dt
    		else -- hit right wall
-     		self.x = love.graphics.getWidth() - 32
+     		self.x = love.graphics.getWidth() - self.w
    		end     
  	end
 end
