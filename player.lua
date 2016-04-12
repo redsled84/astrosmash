@@ -9,30 +9,19 @@ end
 
 function Player:movePlayer(dt)
 	local lk = love.keyboard
-
-	if lk.isDown('d') or lk.isDown('right') then
-		if self.vx > 0 then
-			self.vx = self.vx + self.spd * dt
-		else
-			self.vx = self.vx + self.spd*2 * dt
-		end
-	elseif lk.isDown('a') or lk.isDown('left') then
-		if self.vx < 0 then
-			self.vx = self.vx - self.spd * dt
-		else
-			self.vx = self.vx - self.spd*2 * dt
-		end
-	else
-		self.vx = self.vx / 1.05
-	end
-
-	if self.vx > self.maxSpd then
-		self.vx = self.maxSpd
-	elseif self.vx < -self.maxSpd then
-		self.vx = -self.maxSpd
-	end
-
-	self.x = self.x + self.vx * dt
+	if lk.isDown("left") or lk.isDown("a") then 
+   		if self.x * dt > 0  then -- move left
+   	 		self.x = self.x - self.spd * dt
+   		else -- hit left wall
+    	self.vx = 0
+   	end  
+ 	elseif lk.isDown("right") or lk.isDown("d") then 
+   		if self.x + 32 * dt < love.graphics.getWidth() - 32 then -- move right
+     		self.x = self.x + self.spd * dt
+   		else -- hit right wall
+     		self.x = love.graphics.getWidth() - 32
+   		end     
+ 	end
 end
 
 function Player:collideWithScreen()
