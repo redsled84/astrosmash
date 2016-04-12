@@ -48,7 +48,7 @@ function Enemies:updateEnemies(dt)
 	spd = love.math.random(50, 200)
 	w = love.math.random(8, 32)
 	h = love.math.random(8, 32)
-    if #Enemies <= 10 then	
+    if #Enemies < 2 then	
 		self:spawnEnemy(x, 0, spd, w, h)
 	end
 	self:moveEnemies(dt)
