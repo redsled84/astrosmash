@@ -10,13 +10,13 @@ end
 function Player:movePlayer(dt)
 	local lk = love.keyboard
 
-	if lk.isDown('d') then
+	if lk.isDown('d') or lk.isDown('right') then
 		if self.vx > 0 then
 			self.vx = self.vx + self.spd * dt
 		else
 			self.vx = self.vx + self.spd*2 * dt
 		end
-	elseif lk.isDown('a') then
+	elseif lk.isDown('a') or lk.isDown('left') then
 		if self.vx < 0 then
 			self.vx = self.vx - self.spd * dt
 		else
