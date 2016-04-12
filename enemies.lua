@@ -11,7 +11,6 @@ function Enemies:destroyEnemyOnCollide()
 		local enemy = self[i]
 		if enemy.hasCollided then
 			table.remove(self, i)
-			print('ya')
 		end
 	end
 end
