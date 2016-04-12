@@ -33,6 +33,12 @@ function Enemies:destroyEnemyWhenOutOfBounds()
 		if enemy.y+enemy.h > windowHeight-68 then
 			table.remove(self, i)
 		end
+		if enemy.x - enemy.w < 0 then
+			table.remove(self, i)
+		end
+		if enemy.x > windowWidth then
+			table.remove(self, i)
+		end
 	end
 end
 
