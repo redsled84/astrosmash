@@ -3,7 +3,7 @@ local windowWidth = love.graphics.getWidth()
 local windowHeight = love.graphics.getHeight()
 
 function Background:createBackground()
-	for i=1,10 do
+	for i=1,50 do
 		local x = love.math.random(10, windowWidth)
 		local y = love.math.random(10, windowHeight)
 		table.insert(self, { x = x, y = y })
