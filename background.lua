@@ -12,7 +12,7 @@ end
 
 function Background:drawBackground()
 	for i,v in ipairs(Background) do
-		love.graphics.setColor(0,255,0)
+		love.graphics.setColor(255,255,255)
 		love.graphics.rectangle("fill", v.x, v.y, 3, 3)
 	end
 	love.graphics.setColor(0,255,0)
