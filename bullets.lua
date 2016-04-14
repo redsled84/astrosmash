@@ -1,4 +1,4 @@
-local Bullets = { w = 4, h = 32 }
+local Bullets = { w = 4, h = 16 }
 
 function Bullets:spawnBullet(x, y, spd)
 	table.insert(self, {x = x, y = y, spd = spd, w = self.w, h = self.h, hasCollided = false})
@@ -51,7 +51,7 @@ end
 
 function Bullets:shootBullet(key, x, y)
 	if key == 'space' then
-		self:spawnBullet(x + 7, y, 500) -- this should be 1/2 of the player - 1/2 of the bullet size...  need to fix
+		self:spawnBullet(x + 30, y - self.h, 500) -- this should be 1/2 of the player - 1/2 of the bullet size...  need to fix
 	end
 end
 
