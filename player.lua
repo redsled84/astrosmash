@@ -1,7 +1,10 @@
 local Player = {}
 
 function Player:setPlayer()
-	self.x, self.y, self.w, self.h = love.graphics.getWidth() / 2, love.graphics.getHeight() - 100, 16, 32
+	fighter = love.graphics.newImage("assets/fighter.png")
+	self.x, self.y = love.graphics.getWidth() / 2, love.graphics.getHeight() - 132
+	self.w = fighter:getWidth()
+	self.h = fighter:getHeight()
 	self.vx = 0
 	self.spd, self.maxSpd = 250, 375
 	self.bullets = {}
@@ -41,8 +44,10 @@ end
 
 function Player:drawPlayer(colors, drawType)
 	-- takes R, G, B parameters
-	love.graphics.setColor(unpack(colors))
-	love.graphics.rectangle(drawType, self.x, self.y, self.w, self.h)
+	--love.graphics.setColor(unpack(colors))
+	--love.graphics.rectangle(drawType, self.x, self.y, self.w, self.h)
+	love.graphics.setColor(255,255,255)
+	love.graphics.draw(fighter, self.x, self.y)
 end
 
 return Player
