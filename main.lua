@@ -1,3 +1,4 @@
+score = 0
 local Background = require 'background'
 local Player = require 'player'
 local Bullets = require 'bullets'
@@ -20,10 +21,11 @@ function love.update(dt)
 end
 
 function love.draw()
-	Background:drawBackground()
+	Background:drawBackground({0, 255, 0}, 'fill')
 	Player:drawPlayer({0, 0, 255}, 'fill')
 	Bullets:drawBullets({0,0,255}, 'fill')
 	Enemies:drawEnemies({255,0,0}, 'fill')
+	Background:drawScore({0, 255, 0}, 'fill')
 end
 
 function love.keypressed(key)
