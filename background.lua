@@ -10,13 +10,17 @@ function Background:createBackground()
 	end
 end
 
-function Background:drawBackground()
+function Background:drawBackground(colors, drawType)
+	love.graphics.setColor(unpack(colors))
 	for i,v in ipairs(Background) do
-		love.graphics.setColor(255,255,255)
 		love.graphics.rectangle("fill", v.x, v.y, 3, 3)
 	end
-	love.graphics.setColor(0,255,0)
-	love.graphics.rectangle("fill", 0, windowHeight-68, windowWidth, 5)
+	love.graphics.rectangle(drawType, 0, windowHeight-68, windowWidth, 5)
+end
+
+function Background:drawScore(colors, drawType)
+	love.graphics.setColor(unpack(colors))
+	love.graphics.print("Score: " .. score, windowWidth - 60, windowHeight - 60)
 end
 
 return Background
