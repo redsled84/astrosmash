@@ -1,12 +1,25 @@
-local Enemies = { w = 32, h = 32 }
+local Enemies = { }
 local windowWidth = love.graphics.getWidth()
 local windowHeight = love.graphics.getHeight()
 
-function Enemies:spawnEnemy(x, y, spdX, spdY, w, h)
-	self.img = love.graphics.newImage("assets/asteroid32.png")
+function Enemies:spawnEnemy(x, y, spdX, spdY, w, h, size)
+	number = love.math.random(1, 4)
+	if number == 1 then
+		size = 16 
+	end
+	if number == 2 then
+		size = 32
+	end
+	if number == 3 then
+	 	size = 48
+	end
+	if number == 4 then
+		size = 64
+	end
+	self.img = love.graphics.newImage("assets/asteroid"..size..".png")
 	self.w = self.img:getWidth()
 	self.h = self.img:getHeight()
-	table.insert(self, {x = x, y = y, spdX = spdX, spdY = spdY, w = w, h = h, hasCollided = false})
+	table.insert(self, {x = x, y = y, spdX = spdX, spdY = spdY, w = self.w, h = self.h, img = self.img, hasCollided = false})
 end
 
 function Enemies:destroyEnemyOnCollide()
@@ -26,7 +39,8 @@ function Enemies:checkOnCollide(o)
 			enemy.y < o.y + o.h and
 			enemy.y + enemy.h > o.y then
 			enemy.hasCollided = true
-			if enemy.w >= 32 then -- split large enemies in two
+
+			if enemy.w >= 64 then -- split large enemies in two
 				if enemy.spdX > 0 then
 					self:spawnEnemy(enemy.x + 16, enemy.y, enemy.spdX, enemy.spdY, enemy.w / 2, enemy.h / 2)
 					self:spawnEnemy(enemy.x - 16, enemy.y, -enemy.spdX, enemy.spdY, enemy.w / 2, enemy.h / 2)
@@ -37,6 +51,7 @@ function Enemies:checkOnCollide(o)
 				end
 			end
 			score = score + 10
+			print(enemy.w) -- print to the console
 		end
 	end
 end
@@ -46,6 +61,7 @@ function Enemies:destroyEnemyWhenOutOfBounds()
 		local enemy = self[i]
 		if enemy.y+enemy.h > windowHeight-68 then
 			table.remove(self, i)
+			lives = lives - 1
 		end
 		if enemy.x + enemy.w < 0 then
 			table.remove(self, i)
@@ -65,12 +81,15 @@ function Enemies:moveEnemies(dt)
 end
 
 function Enemies:updateEnemies(dt)
-	x = love.math.random(0, windowWidth)
-	spdX = love.math.random(-50, 50)
-	spdY = love.math.random(60, 100)
-	w = love.math.random(16, 48)
-	h = love.math.random(8, 32)
+	for i=1, #self do
+		local enemy = self[i]
+		w = enemy.w
+		h = enemy.h 
+	end
     if #Enemies < 2 then	
+		x = love.math.random(0, windowWidth)
+		spdX = love.math.random(-50, 50)
+		spdY = love.math.random(60, 100)
 		self:spawnEnemy(x, 0, spdX, spdY, w, h)
 	end
 	self:moveEnemies(dt)
@@ -84,15 +103,8 @@ function Enemies:drawEnemies(colors, drawType)
 		--love.graphics.setColor(unpack(colors))
 		--love.graphics.rectangle(drawType, enemy.x, enemy.y, enemy.w, enemy.h)
 		love.graphics.setColor(255,255,255)
-		love.graphics.draw(self.img, enemy.x, enemy.y)
-	end
-end
-
-function Enemies:shootEnemy(key, x, y)
-	if key == 'space' then
-		self:spawnEnemy(x, y, 500, 200)
+		love.graphics.draw(self[i].img, enemy.x, enemy.y)
 	end
 end
 
 return Enemies
-
