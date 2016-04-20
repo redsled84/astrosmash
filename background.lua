@@ -25,4 +25,10 @@ function Background:drawScore(colors, drawType)
 	love.graphics.printf("Score: " .. score, -20, windowHeight - 48, windowWidth, "right")
 end
 
+function Background:drawLives(colors, drawType)
+	love.graphics.setColor(unpack(colors))
+	love.graphics.printf("Lives: " .. lives, 20, windowHeight - 48, 0, "left")
+	love.graphics.print("Lives: " .. lives, 20, windowHeight - 48, 0)
+end
+
 return Background
