@@ -1,4 +1,5 @@
 score = 0
+lives = 3
 local Background = require 'background'
 local Player = require 'player'
 local Bullets = require 'bullets'
@@ -26,6 +27,7 @@ function love.draw()
 	Bullets:drawBullets({0,0,255}, 'fill')
 	Enemies:drawEnemies({255,0,0}, 'fill')
 	Background:drawScore({0, 255, 0}, 'fill')
+	Background:drawLives({0, 255, 0}, 'fill')
 end
 
 function love.keypressed(key)
@@ -33,6 +35,5 @@ function love.keypressed(key)
 		-- final version will have a prompt asking if the player wants to quit
 		love.event.quit()
 	end
-
 	Bullets:shootBullet(key, Player.x, Player.y)
 end
