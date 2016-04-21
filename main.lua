@@ -1,4 +1,4 @@
-gameState = "splash"
+gameState = "playing"
 score = 0
 lives = 3
 local SplashBackground = require 'splashBackground'
