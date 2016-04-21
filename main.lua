@@ -6,7 +6,7 @@ local Background = require 'background'
 local Player = require 'player'
 local Bullets = require 'bullets'
 local Enemies = require 'enemies'
-local GameState = require 'gameState'
+local GameState = require 'gamestate'
 
 function love.load()
 	--[[
