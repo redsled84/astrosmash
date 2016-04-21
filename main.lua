@@ -23,7 +23,10 @@ function love.update(dt)
 		Player:updatePlayer(dt)
 		Bullets:updateBullets(dt)
 		Enemies:updateEnemies(dt)
-		Bullets:loopBullets(function(bullet) Enemies:checkOnCollide(bullet) end)
+		Bullets:loopBullets(function(bullet) 
+			local collided = Enemies:checkOnCollide(bullet)
+			if collided then Bullets.bullets = {} end
+		end)
 	end
 end
 

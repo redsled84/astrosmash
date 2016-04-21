@@ -26,7 +26,6 @@ function Enemies:destroyEnemyOnCollide(o)
 	for i=#self, 1, -1 do
 		local enemy = self[i]
 		if enemy.hasCollided then
-			o.hasCollided = true
 			table.remove(self, i)
 		end
 	end
@@ -40,7 +39,6 @@ function Enemies:checkOnCollide(o)
 			enemy.y < o.y + o.h and
 			enemy.y + enemy.h > o.y then
 			enemy.hasCollided = true
-
 			if enemy.w >= 64 then -- split large enemies in two
 				if enemy.spdX > 0 then
 					self:spawnEnemy(enemy.x + 16, enemy.y, enemy.spdX, enemy.spdY, enemy.w / 2, enemy.h / 2)
@@ -54,6 +52,8 @@ function Enemies:checkOnCollide(o)
 			self:destroyEnemyOnCollide(o)
 			score = score + 10
 			print(enemy.w) -- print to the console
+
+			return true
 		end
 	end
 end
@@ -95,7 +95,7 @@ function Enemies:updateEnemies(dt)
 		self:spawnEnemy(x, 0, spdX, spdY, w, h)
 	end
 	self:moveEnemies(dt)
-	--self:destroyEnemyOnCollide()
+	self:destroyEnemyOnCollide()
 	self:destroyEnemyWhenOutOfBounds()
 end
 
