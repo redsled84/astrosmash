@@ -27,7 +27,6 @@ end
 
 function Background:drawLives(colors, drawType)
 	love.graphics.setColor(unpack(colors))
-	love.graphics.printf("Lives: " .. lives, 20, windowHeight - 48, 0, "left")
 	love.graphics.print("Lives: " .. lives, 20, windowHeight - 48, 0)
 end
 
