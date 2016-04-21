@@ -6,8 +6,10 @@ local Background = require 'background'
 local Player = require 'player'
 local Bullets = require 'bullets'
 local Enemies = require 'enemies'
+local GameState = require 'gameState'
 
 function love.load()
+	--[[
 	if gameState == "splash" then
 	else
 		Background:createBackground()
@@ -15,6 +17,18 @@ function love.load()
 		local str = "Astrosmash copy currently under development by redsled84, slainchicken and LapisButterfly :)"
 		print(str)
 	end
+	]]
+
+	GameState:checkState("splash", function()
+		-- ex: insert functions/code for splash background here
+	end)
+
+	GameState:checkState("playing", function()
+		Background:createBackground()
+		Player:setPlayer()
+		local str = "Astrosmash copy currently under development by redsled84, slainchicken and LapisButterfly :)"
+		print(str)
+	end)
 end
 
 function love.update(dt)
